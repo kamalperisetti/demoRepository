@@ -29,18 +29,11 @@ public class PorjectService implements GameRepository {
     public String sendResourceCardToRM(ResourceCard resourceCard){
         Game game = gameService.getGame();
         Collection<ResourceCard> AllResourceCards = new ArrayList<>();
-        for(ResourceCard card : game.getCards()){
-            AllResourceCards.add(card);
-        }
-        System.out.println(AllResourceCards + "All");
+        AllResourceCards.addAll(game.getCards());
         ResourceCard card = new ResourceCard(resourceCard.id(), resourceCard.homeBoardId(), resourceCard.time(), resourceCard.skill(), resourceCard.name());
-        System.out.println(card);
-
-
         AllResourceCards.add(card);
         game.setCards(AllResourceCards);
-        System.out.println(AllResourceCards + "Added");
-        System.out.println(game.getCards()+ "JOJOJOHKGMJ");
+
         return "ResourceCard Successfully Send To Resource Manager";
     }
 
