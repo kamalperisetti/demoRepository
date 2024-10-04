@@ -2,8 +2,10 @@ package de.itdesign.incubating.rmg.controller;
 
 import de.itdesign.incubating.rmg.model.*;
 import de.itdesign.incubating.rmg.service.GameService;
-import de.itdesign.incubating.rmg.service.PorjectService;
+import de.itdesign.incubating.rmg.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -14,24 +16,30 @@ import java.util.Collection;
 import java.util.List;
 
 @RestController
-//@Controller
+@Controller
 public class ProjectManagerController {
 
-
-
-//    Player resourceManger = new Player("2", Role.RM, "Bharath", List.of(1, 2));
+    @Autowired
+    ProjectService projectService;
 
     @Autowired
-    PorjectService projectService;
-   // @MessageMapping("game/{gameId}/owner?{ownerId}")
-   // @SendTo("/topic/projects")
-   @GetMapping("/get-project/{id}")
-    public List<ProjectPlan> getProjectByPlayerId(@PathVariable("id") int id) {
-        return projectService.getProjectByPlayerId(id);
+    GameService gameService;
+
+    @MessageMapping("/sayhi")
+    @SendTo("/topic/hello")
+    public String sayHello(){
+        return "HII GUYSSS";
     }
 
-    @PostMapping("/resource-card-sending")
-    public String sendResourceCardToRM(@RequestBody ResourceCard resourceCard){
+//    @MessageMapping("{playerId}")
+//    @SendTo("/topic/projects")
+    @GetMapping("games/{gameId}/projectPlans")
+    public List<ProjectPlan> getProjectByPlayerId(@PathVariable("gameId") int gameId, @RequestParam("ownerId")int playerId) {
+      return projectService.getProjectByPlayerId(gameId, playerId);
+    }
+
+    @PostMapping("/game/1/resources/resourcesId/return")
+    public ResponseEntity<String> sendResourceCardToRM(@RequestBody ResourceCard resourceCard){
         return projectService.sendResourceCardToRM(resourceCard);
     }
 }

@@ -3,7 +3,7 @@ package de.itdesign.incubating.rmg;
 import de.itdesign.incubating.rmg.model.ProjectPlan;
 import de.itdesign.incubating.rmg.model.ResourceCard;
 import de.itdesign.incubating.rmg.model.Skill;
-import de.itdesign.incubating.rmg.service.PorjectService;
+import de.itdesign.incubating.rmg.service.ProjectService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -31,7 +31,7 @@ public class TestProjectManagerController {
     private MockMvc mockMvc;
 
     @Mock
-    private PorjectService projectService;
+    private ProjectService projectService;
 
     @InjectMocks
     private TestProjectManagerController projectManagerController;

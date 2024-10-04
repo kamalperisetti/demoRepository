@@ -14,7 +14,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         // Enable WebSocket MessageBroker
         config.enableSimpleBroker("/topic");
         // Prefix for sending messages to the server from client
-        config.setApplicationDestinationPrefixes("/app");
+        config.setApplicationDestinationPrefixes("/games");
     }
 
     @Override
