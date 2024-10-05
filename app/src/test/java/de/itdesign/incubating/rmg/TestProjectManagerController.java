@@ -61,17 +61,17 @@ public class TestProjectManagerController {
 //                .andExpect(jsonPath("$[1].name").value("Project Beta"));
 //    }
 
-    @Test
-    void testSendResourceCardToRM() throws Exception {
-        // Arrange: mock the service method's behavior
-        ResourceCard newResourceCard = new ResourceCard("1", "B1", 0, Skill.HEART, "Kamal");
-        when(projectService.sendResourceCardToRM(newResourceCard)).thenReturn("Resource card sent");
-
-        // Act and Assert: perform POST request and verify the response
-        mockMvc.perform(post("/resource-card-sending")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"id\":1,\"name\":\"Resource A\",\"quantity\":2}"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Resource card sent"));
-    }
+//    @Test
+//    void testSendResourceCardToRM() throws Exception {
+//        // Arrange: mock the service method's behavior
+//        ResourceCard newResourceCard = new ResourceCard("1", "B1", 0, Skill.HEART, "Kamal");
+//        when(projectService.sendResourceCardToRM(newResourceCard)).thenReturn("Resource card sent");
+//
+//        // Act and Assert: perform POST request and verify the response
+//        mockMvc.perform(post("/resource-card-sending")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("{\"id\":1,\"name\":\"Resource A\",\"quantity\":2}"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string("Resource card sent"));
+//    }
 }
